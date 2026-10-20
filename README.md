@@ -1,6 +1,10 @@
 # Vitor Sacramento portfolio
 
-Local Astro source for the proposed `sacramento-unb.github.io` portfolio.
+Astro source for the `sacramento-unb.github.io` portfolio.
+
+The public baseline is deployed from `af15453`. The current editorial revision
+is prepared locally and continues from that history; it is not published until
+the owner approves the new visual version.
 
 ## Local verification
 
@@ -16,7 +20,7 @@ limitations and experimental status of the implementation.
 
 ## Publication boundary
 
-The GitHub Pages workflow is manual-only. Do not create the remote repository,
-push this source, enable Pages or run the workflow without explicit approval.
+The GitHub Pages workflow is manual-only. Publishing a new revision requires an
+explicit owner approval followed by a reviewed push and a manual workflow run.
 The private `github-modernization` control directory must never be copied into
 the public repository.
