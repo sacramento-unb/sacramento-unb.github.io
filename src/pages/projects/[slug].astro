@@ -1,21 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projects } from "../../data/projects";
+import type { Project } from "../../data/projects";
 export function getStaticPaths() { return projects.map((project) => ({ params: { slug: project.slug }, props: { project } })); }
 const { project } = Astro.props;
+type Props = { project: Project };
 ---
 <BaseLayout title={`${project.title} — Vitor Sacramento`} description={project.summary}>
-  <article class="shell case-study"><header class="page-head"><p class="eyebrow">Case study / {project.domain} / {project.status}</p><h1>{project.title}</h1><p class="lead">{project.summary}</p><div class="case-meta"><span>Verified implementation</span><a href={project.repositoryUrl}>Public repository ↗</a></div></header><div class="prose section">
+  <article class="shell case-study"><header class="page-head"><a class="text-link" href="/projects/">← All projects</a><p class="eyebrow">Case study / {project.domain} / {project.status}</p><h1>{project.title}</h1><p class="lead">{project.summary}</p><div class="case-meta"><span>Experimental / selected checks completed</span><a href={project.repositoryUrl}>Public repository ↗</a></div></header>
+    <nav class="case-toc" aria-label="Case study sections"><a href="#problem">Problem</a><a href="#architecture">Architecture</a><a href="#results">Results</a><a href="#limits">Limitations</a></nav>
+    <section class="section" aria-labelledby="architecture"><h2 id="architecture">Architecture at a glance</h2><p class="lead">{project.architecture}</p><ol class="flow">{project.flow.map(step => <li><strong>{step.label}</strong><p>{step.detail}</p></li>)}</ol><p class="diagram-note">Conceptual flow reconstructed from the public implementation. Runtime and integration limits are described below.</p></section>
+    <div class="prose">
     <p class="case-intro">A closer look at the question, the system and the limits that stay visible.</p>
     <h2>Context</h2><p>{project.context}</p>
-    <h2>Problem</h2><p>{project.problem}</p>
+    <h2 id="problem">Problem</h2><p>{project.problem}</p>
     <h2>My role</h2><p>{project.role}</p>
     <h2>Technical approach</h2><p>{project.technicalApproach}</p>
-    <h2>Architecture</h2><p>{project.architecture}</p>
     <h2>Implementation</h2><p>{project.implementation}</p>
-    <h2>Challenges</h2><p>{project.challenges}</p>
-    <h2>Results</h2><p>{project.results}</p>
-    <h2>Technologies</h2><p>{project.technologies.join(", ")}</p>
+    <h2 id="limits">Challenges and limitations</h2><p>{project.challenges}</p>
+    <h2 id="results">Results</h2><p>{project.results}</p>
+    <h2>Technologies</h2><ul class="tags">{project.technologies.map(technology => <li>{technology}</li>)}</ul>
     <h2>Lessons learned</h2><p>{project.lessons}</p>
     <p><a class="button" href={project.repositoryUrl}>View the public repository <span aria-hidden="true">↗</span></a></p>
   </div></article>

@@ -1,19 +1,46 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projects } from "../../data/projects";
-const domains = ["all", "data", "ai", "geospatial", "software"];
+const domains = [...new Set(projects.map(project => project.domain))];
+const technologies = [...new Set(projects.flatMap(project => project.technologies))].sort();
 ---
-<BaseLayout title="Projects — Vitor Sacramento" description="Verified projects in data engineering, geospatial intelligence, AI and software.">
-  <div class="shell project-index"><header class="page-head"><p class="eyebrow">Selected work / {projects.length.toString().padStart(2, "0")} case studies</p><h1>Projects with evidence behind them.</h1><p class="lead">A public index of systems built around data, place and applied intelligence. Each entry keeps verified implementation separate from runtime claims that still need validation.</p></header>
-    <div class="filters" aria-label="Filter projects">{domains.map((domain) => <button type="button" data-filter={domain} aria-pressed={domain === "all"}>{domain}</button>)}</div>
-    <section class="grid project-grid" id="project-grid">{projects.map((project, index) => <article class="card project-card" data-domain={project.domain}><div class="project-card__header"><span class="index">0{index + 1}</span><span class="project-card__domain">{project.domain} / {project.status}</span></div><h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2><p>{project.summary}</p><p class="project-card__link"><a href={`/projects/${project.slug}/`}>Read the case study <span aria-hidden="true">↗</span></a></p></article>)}</section>
-    {projects.length === 0 && <p class="empty-state">No project has been approved for publication yet. The repository audit and rights review remain local.</p>}
+<BaseLayout title="Projects — Vitor Sacramento" description="Four public experiments in computer vision, media workflows, Linux audio and browser privacy, with architecture, tested behavior and known limitations.">
+  <div class="shell project-index">
+    <header class="page-head"><p class="eyebrow">Selected work / {projects.length.toString().padStart(2, "0")} case studies</p><h1>From a question to a working system.</h1><p class="lead">Personal experiments in vision, media, audio and browser privacy. Explore the problem, architecture and verified checks behind each one.</p></header>
+    <div class="filters" data-filter-controls hidden>
+      <div class="filter-field"><label for="domain-filter">Domain</label><select id="domain-filter"><option value="all">All domains</option>{domains.map(domain => <option value={domain}>{domain === "ai" ? "Applied AI" : "Software engineering"}</option>)}</select></div>
+      <div class="filter-field"><label for="technology-filter">Technology</label><select id="technology-filter"><option value="all">All technologies</option>{technologies.map(technology => <option value={technology}>{technology}</option>)}</select></div>
+    </div>
+    <p class="filter-status" id="filter-status" role="status" aria-live="polite">{projects.length} projects</p>
+    <div class="grid project-grid" id="project-grid">{projects.map((project, index) => <article class="card project-card" data-domain={project.domain} data-technologies={JSON.stringify(project.technologies)}>
+      <div class="project-card__header"><span class="index">0{index + 1}</span><span class="project-card__domain">{project.domain === "ai" ? "Applied AI" : "Software"} / {project.status}</span></div>
+      <h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2><p>{project.summary}</p>
+      <ul class="tags" aria-label={`${project.title} technologies`}>{project.technologies.map(technology => <li>{technology}</li>)}</ul>
+      <p class="project-card__link"><a class="text-link" href={`/projects/${project.slug}/`}>Read {project.title} case study <span aria-hidden="true">→</span></a></p>
+    </article>)}</div>
+    <p class="empty-state" id="no-projects" hidden>No projects match these filters. Choose “All domains” and “All technologies” to explore the full selection.</p>
   </div>
   <script>
-    document.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((button) => button.addEventListener("click", () => {
-      const filter = button.dataset.filter;
-      document.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      document.querySelectorAll<HTMLElement>("[data-domain]").forEach((card) => { card.hidden = filter !== "all" && card.dataset.domain !== filter; });
-    }));
+    const domain = document.querySelector<HTMLSelectElement>("#domain-filter");
+    const technology = document.querySelector<HTMLSelectElement>("#technology-filter");
+    const cards = [...document.querySelectorAll<HTMLElement>("[data-domain]")];
+    const status = document.querySelector("#filter-status");
+    const empty = document.querySelector<HTMLElement>("#no-projects");
+    const controls = document.querySelector<HTMLElement>("[data-filter-controls]");
+    if (domain && technology && status && empty && controls) {
+      controls.hidden = false;
+      const update = () => {
+        let count = 0;
+        for (const card of cards) {
+          const technologies: string[] = JSON.parse(card.dataset.technologies || "[]");
+          card.hidden = (domain.value !== "all" && domain.value !== card.dataset.domain) || (technology.value !== "all" && !technologies.includes(technology.value));
+          if (!card.hidden) count++;
+        }
+        status.textContent = `${count} ${count === 1 ? "project" : "projects"}`;
+        empty.hidden = count > 0;
+      };
+      domain.addEventListener("change", update);
+      technology.addEventListener("change", update);
+    }
   </script>
 </BaseLayout>

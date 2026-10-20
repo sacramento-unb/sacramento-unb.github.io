@@ -3,3 +3,6 @@ dist/
 .astro/
 .DS_Store
 *.log
+audit-artifacts/
+test-results/
+playwright-report/

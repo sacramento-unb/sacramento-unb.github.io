@@ -1,0 +1,41 @@
+:root {
+  --atlas: #0b3440;
+  --mineral: #2e665f;
+  --copper: #c87941;
+  --sand: #d8c8a8;
+  --paper: #f2eee5;
+  --ink: #142428;
+  --slate: #45636b;
+  --bg: var(--paper);
+  --surface: #e9e7de;
+  --text: var(--ink);
+  --muted: var(--slate);
+  --line: #b0bcb8;
+  --accent: #a85325;
+  --on-accent: #ffffff;
+  --button: var(--atlas);
+  --on-button: var(--paper);
+  --focus: #a85325;
+  --max: 1180px;
+  --sans: "Noto Sans Variable", Arial, sans-serif;
+  --serif: "Noto Serif", Georgia, serif;
+  --mono: "Noto Sans Mono", monospace;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --radius: .25rem;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--atlas);
+  --surface: #123f48;
+  --text: var(--paper);
+  --muted: #bdd0cd;
+  --line: #527b7d;
+  --accent: #e19b68;
+  --on-accent: var(--atlas);
+  --button: var(--paper);
+  --on-button: var(--atlas);
+  --focus: #e19b68;
+  color-scheme: dark;
+}

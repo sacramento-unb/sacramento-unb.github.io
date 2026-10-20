@@ -13,6 +13,7 @@ export type Project = {
   role: string;
   technicalApproach: string;
   architecture: string;
+  flow: { label: string; detail: string }[];
   implementation: string;
   challenges: string;
   results: string;
@@ -37,6 +38,12 @@ export const projects: Project[] = [
     role: "Personal project author and maintainer, supported by the repository history.",
     technicalApproach: "Capture only the latest frame, detect eye and iris landmarks, guard unsuitable poses or blinks, then apply model-based eye warps before compositing the frame.",
     architecture: "A capture thread feeds an in-memory frame path; MediaPipe provides landmarks, two eye-warp models transform crops, OpenCV composites the result and pyvirtualcam writes to the V4L2 device. A watchdog handles stalls.",
+    flow: [
+      { label: "Capture", detail: "The latest camera frame enters the in-memory path." },
+      { label: "Landmarks", detail: "MediaPipe locates eyes and iris; geometry guards reject unsuitable poses." },
+      { label: "Transform", detail: "Eye-warp models and OpenCV composite the frame." },
+      { label: "Output", detail: "pyvirtualcam writes to V4L2; a watchdog detects stalls." },
+    ],
     implementation: "The audited entry point is `gaze_camera.py`; model preparation is isolated in `tools/prepare_models.py`, while system and user installers are kept separate.",
     challenges: "Model conversion depends on heavyweight external downloads, hardware behavior is device-specific and the project still needs a repository-level license.",
     results: "Five unit tests passed and Python compilation succeeded; three model-dependent tests remained blocked because generated models were intentionally absent. Hardware output and FPS were not re-verified.",
@@ -57,6 +64,12 @@ export const projects: Project[] = [
     role: "Personal project author and maintainer, supported by the repository history.",
     technicalApproach: "Stream uploads to temporary storage, hash and rename them, analyze with FFprobe, queue one deterministic worker and require manual selection before rendering.",
     architecture: "Rust/Axum orchestrates uploads, SQLite migrations and jobs; a React interface reviews suggestions; FFmpeg and FFprobe perform media work; output is written separately from the source.",
+    flow: [
+      { label: "Upload", detail: "Axum streams, hashes and stores original media." },
+      { label: "Analyze", detail: "FFprobe supplies metadata; SQLite persists jobs." },
+      { label: "Review", detail: "The React interface collects human-approved edits." },
+      { label: "Render", detail: "A deterministic worker runs FFmpeg and writes a separate output." },
+    ],
     implementation: "The backend starts at `backend/src/main.rs`, the frontend at `frontend/src/main.tsx`, and binary paths are configured with `FFMPEG_BIN` and `FFPROBE_BIN`.",
     challenges: "The current code is safe only when kept on a local boundary: CORS is broad, non-loopback binding has no authentication, media integration was not run and planned Whisper/Gemini layers are not implemented.",
     results: "Six Rust tests, the frontend test, the TypeScript/Vite production build and the production dependency audit passed. No server, container, FFmpeg process or end-to-end render was executed.",
@@ -77,6 +90,12 @@ export const projects: Project[] = [
     role: "Personal project author and maintainer, supported by commit and plugin metadata.",
     technicalApproach: "Dispatch a CLI to profile management, diagnostics, a TUI or an audio daemon; generate an FFmpeg filter chain and publish its monitor as a virtual source.",
     architecture: "JSON profiles and settings feed a user service; the daemon discovers the source, creates a PipeWire null sink, starts FFmpeg and restarts on configuration, device or process changes.",
+    flow: [
+      { label: "Configure", detail: "CLI and TUI manage JSON profiles and settings." },
+      { label: "Discover", detail: "The user daemon discovers the microphone source." },
+      { label: "Process", detail: "FFmpeg applies a filter chain through a PipeWire null sink." },
+      { label: "Route", detail: "The monitor becomes a virtual source; the service handles restarts." },
+    ],
     implementation: "The `yeti-voice` CLI and `yeti_voice.daemon:main` are the primary entry points; optional Omarchy and Hyprland integration remains separate from the core engine.",
     challenges: "Real ALSA, PipeWire, FFmpeg and systemd behavior depends on one Linux hardware environment, and the repository still needs a license decision.",
     results: "Twenty-three unit tests passed twice, compilation passed and Markdown links were checked. Hardware routing, acoustic quality and the installer were intentionally not executed.",
@@ -97,6 +116,12 @@ export const projects: Project[] = [
     role: "Personal project author and maintainer, supported by the repository history.",
     technicalApproach: "Keep the default flow in memory; when persistence is requested, derive an AES-256-GCM key with PBKDF2 and store ciphertext, salt and IV in IndexedDB.",
     architecture: "`src/App.tsx` owns the flow, `src/data.ts` contains the deterministic catalog, `src/storage.ts` handles encrypted persistence and a service worker provides same-request offline caching.",
+    flow: [
+      { label: "Prepare", detail: "React presents a deterministic catalog and preparation flow." },
+      { label: "Keep local", detail: "Session state stays in memory by default." },
+      { label: "Opt in", detail: "Optional persistence derives an AES-GCM key with PBKDF2." },
+      { label: "Store", detail: "IndexedDB holds ciphertext, salt and IV; the service worker caches requests." },
+    ],
     implementation: "The entry point is `src/main.tsx`; configuration is build-time Vite configuration and no environment variable is required by the audited code.",
     challenges: "Browser cryptography, IndexedDB, service-worker lifecycle, accessibility and offline installation remain under-tested; direct dependencies also use broad `latest` ranges.",
     results: "The unit test, TypeScript lint, production build and production dependency audit passed. Browser persistence, installation, printing and accessibility were not re-verified.",

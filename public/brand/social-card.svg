@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Vitor Sacramento — territory, data and applied intelligence">
+  <rect width="1200" height="630" fill="#0b3440"/>
+  <rect x="72" y="72" width="1056" height="486" fill="none" stroke="#45636b"/>
+  <text x="112" y="160" fill="#bdd0cd" font-family="Noto Sans Mono, monospace" font-size="18" letter-spacing="2">SCIENCE / TERRITORY / INTELLIGENCE</text>
+  <text x="112" y="285" fill="#f2eee5" font-family="Noto Sans, Arial, sans-serif" font-size="68" font-weight="700">Vitor Sacramento</text>
+  <text x="112" y="365" fill="#f2eee5" font-family="Noto Sans, Arial, sans-serif" font-size="32">Territory, data and applied intelligence.</text>
+  <text x="112" y="462" fill="#bdd0cd" font-family="Noto Sans Mono, monospace" font-size="20">sacramento-unb.github.io</text>
+  <g transform="translate(930 390)" fill="none" stroke="#f2eee5" stroke-width="8" stroke-linecap="round"><path d="M16 30 C38 30 39 48 62 48 H112"/><path d="M16 64 H112"/><path d="M16 98 C38 98 39 80 62 80 H112"/></g>
+  <circle cx="994" cy="454" r="7" fill="#e19b68"/>
+</svg>

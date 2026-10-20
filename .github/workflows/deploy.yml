@@ -6,8 +6,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -21,9 +19,15 @@ jobs:
         uses: actions/checkout@v6
       - name: Build and upload Astro site
         uses: withastro/action@v6
+        with:
+          node-version: 26
+          build-cmd: npm run check && npm run build && npm run test:links
 
   deploy:
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     environment:
       name: github-pages
