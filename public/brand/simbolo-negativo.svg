@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Símbolo negativo Vitor Sacramento">
+  <g fill="none" stroke="#F2EEE5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 30 C38 30 39 48 62 48 H112"/>
+    <path d="M16 64 H112"/>
+    <path d="M16 98 C38 98 39 80 62 80 H112"/>
+  </g>
+  <circle cx="64" cy="64" r="7" fill="#E19B68"/>
+</svg>

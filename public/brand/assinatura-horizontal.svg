@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
+  <title id="title">Vitor Sacramento</title>
+  <desc id="desc">Assinatura horizontal com símbolo de território e dados.</desc>
+  <g transform="translate(22 26)" fill="none" stroke="#0B3440" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 30 C38 30 39 48 62 48 H112"/>
+    <path d="M16 64 H112"/>
+    <path d="M16 98 C38 98 39 80 62 80 H112"/>
+  </g>
+  <circle cx="108" cy="90" r="7" fill="#C87941"/>
+  <text x="176" y="84" fill="#0B3440" font-family="Noto Sans, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-1.4">Vitor Sacramento</text>
+  <text x="178" y="120" fill="#45636B" font-family="Noto Sans Mono, monospace" font-size="15" font-weight="500" letter-spacing="1.8">CIÊNCIA · TERRITÓRIO · INTELIGÊNCIA</text>
+</svg>

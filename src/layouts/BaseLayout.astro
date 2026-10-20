@@ -18,7 +18,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f1ede4" />
+    <meta name="theme-color" content="#0b3440" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
@@ -36,10 +36,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="site-header">
       <div class="site-header__inner">
         <a class="brand" href="/" aria-label="Vitor Sacramento home">
-          <span class="brand-mark">VS</span>
+          <span class="brand-symbol" aria-hidden="true"><img class="brand-symbol--light" src="/brand/simbolo.svg" alt="" /><img class="brand-symbol--dark" src="/brand/simbolo-negativo.svg" alt="" /></span>
           <span class="brand-name">Vitor Sacramento</span>
         </a>
-        <p class="header-kicker">Data / space / intelligence</p>
+        <p class="header-kicker">Territory / data / applied intelligence</p>
         <nav aria-label="Primary navigation">
           <a href="/projects/">Work</a>
           <a href="/expertise/">Practice</a>
@@ -51,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </header>
     <main id="main"><slot /></main>
     <footer>
-      <div class="footer-signoff"><span class="brand-mark">VS</span><p>Evidence-led work for complex systems.</p></div>
+      <div class="footer-signoff"><img class="footer-symbol" src="/brand/simbolo-negativo.svg" alt="" /><p>Territory, data and applied intelligence.</p></div>
       <div><a href="https://github.com/sacramento-unb">GitHub</a> <a href="/pt-br/" lang="pt-BR">Português</a></div>
     </footer>
     <script is:inline>

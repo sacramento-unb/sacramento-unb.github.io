@@ -18,6 +18,9 @@ npm run build
 projects approved by the owner; each case study preserves the audited
 limitations and experimental status of the implementation.
 
+The visual system in `public/brand/` uses the approved Vitor Sacramento branding
+kit: official symbol variants, favicon and the territory-to-data key visual.
+
 ## Publication boundary
 
 The GitHub Pages workflow is manual-only. Publishing a new revision requires an

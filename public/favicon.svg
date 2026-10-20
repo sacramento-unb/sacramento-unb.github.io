@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#071b2d"/><path d="M14 18h9l9 27 9-27h9L37 52H27z" fill="#63c7ef"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Vitor Sacramento">
+  <rect width="64" height="64" rx="12" fill="#0B3440"/>
+  <g fill="none" stroke="#F2EEE5" stroke-width="4" stroke-linecap="round">
+    <path d="M8 16 C20 16 20 25 31 25 H56"/>
+    <path d="M8 32 H56"/>
+    <path d="M8 48 C20 48 20 39 31 39 H56"/>
+  </g>
+  <circle cx="32" cy="32" r="4" fill="#E19B68"/>
+</svg>
