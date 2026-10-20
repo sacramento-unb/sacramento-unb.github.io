@@ -4,9 +4,9 @@ import { projects } from "../../data/projects";
 const domains = ["all", "data", "ai", "geospatial", "software"];
 ---
 <BaseLayout title="Projects — Vitor Sacramento" description="Verified projects in data engineering, geospatial intelligence, AI and software.">
-  <div class="shell"><header class="page-head"><p class="eyebrow">Selected work</p><h1>Projects with evidence behind them.</h1><p class="lead">The catalog is an explicit allowlist. A public repository is not included until its ownership, technical claims and publication status have been reviewed.</p></header>
+  <div class="shell"><header class="page-head"><p class="eyebrow">Selected work</p><h1>Projects with evidence behind them.</h1><p class="lead">Four public projects are included through an explicit allowlist. Each entry keeps verified implementation separate from runtime claims that still need validation.</p></header>
     <div class="filters" aria-label="Filter projects">{domains.map((domain) => <button type="button" data-filter={domain} aria-pressed={domain === "all"}>{domain}</button>)}</div>
-    <section class="grid" id="project-grid">{projects.map((project) => <article class="card" data-domain={project.domain}><span class="index">{project.domain}</span><h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2><p>{project.summary}</p></article>)}</section>
+    <section class="grid" id="project-grid">{projects.map((project) => <article class="card" data-domain={project.domain}><span class="index">{project.domain} · {project.status}</span><h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2><p>{project.summary}</p><p><a href={`/projects/${project.slug}/`}>Read the evidence-led case study →</a></p></article>)}</section>
     {projects.length === 0 && <p class="empty-state">No project has been approved for publication yet. The repository audit and rights review remain local.</p>}
   </div>
   <script>

@@ -5,5 +5,17 @@ export function getStaticPaths() { return projects.map((project) => ({ params: {
 const { project } = Astro.props;
 ---
 <BaseLayout title={`${project.title} — Vitor Sacramento`} description={project.summary}>
-  <article class="shell"><header class="page-head"><p class="eyebrow">Case study · {project.domain}</p><h1>{project.title}</h1><p class="lead">{project.summary}</p></header><div class="prose section"><h2>Publication status</h2><p>This case study is generated only from an audited, approved allowlist entry.</p><h2>Technologies</h2><p>{project.technologies.join(", ")}</p><p><a href={project.repositoryUrl}>View the public repository</a></p></div></article>
+  <article class="shell"><header class="page-head"><p class="eyebrow">Case study · {project.domain} · {project.status}</p><h1>{project.title}</h1><p class="lead">{project.summary}</p></header><div class="prose section">
+    <h2>Context</h2><p>{project.context}</p>
+    <h2>Problem</h2><p>{project.problem}</p>
+    <h2>My role</h2><p>{project.role}</p>
+    <h2>Technical approach</h2><p>{project.technicalApproach}</p>
+    <h2>Architecture</h2><p>{project.architecture}</p>
+    <h2>Implementation</h2><p>{project.implementation}</p>
+    <h2>Challenges</h2><p>{project.challenges}</p>
+    <h2>Results</h2><p>{project.results}</p>
+    <h2>Technologies</h2><p>{project.technologies.join(", ")}</p>
+    <h2>Lessons learned</h2><p>{project.lessons}</p>
+    <p><a class="button" href={project.repositoryUrl}>View the public repository</a></p>
+  </div></article>
 </BaseLayout>

@@ -10,8 +10,9 @@ npm run check
 npm run build
 ```
 
-`src/data/projects.ts` is the publication allowlist. It is intentionally empty
-until project ownership, technical evidence and exposure are approved.
+`src/data/projects.ts` is the publication allowlist. It contains four public
+projects approved by the owner; each case study preserves the audited
+limitations and experimental status of the implementation.
 
 ## Publication boundary
 
