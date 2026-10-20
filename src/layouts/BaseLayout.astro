@@ -18,7 +18,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#071b2d" />
+    <meta name="theme-color" content="#f1ede4" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
@@ -28,25 +28,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <script is:inline>
       const saved = localStorage.getItem("theme");
-      const preferred = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-      document.documentElement.dataset.theme = saved || preferred;
+      document.documentElement.dataset.theme = saved || "light";
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Vitor Sacramento home">VS<span>.</span></a>
-      <nav aria-label="Primary navigation">
-        <a href="/projects/">Projects</a>
-        <a href="/expertise/">Expertise</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-      <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+      <div class="site-header__inner">
+        <a class="brand" href="/" aria-label="Vitor Sacramento home">
+          <span class="brand-mark">VS</span>
+          <span class="brand-name">Vitor Sacramento</span>
+        </a>
+        <p class="header-kicker">Data / space / intelligence</p>
+        <nav aria-label="Primary navigation">
+          <a href="/projects/">Work</a>
+          <a href="/expertise/">Practice</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+      </div>
     </header>
     <main id="main"><slot /></main>
     <footer>
-      <p>Designed around evidence, clarity and responsible disclosure.</p>
+      <div class="footer-signoff"><span class="brand-mark">VS</span><p>Evidence-led work for complex systems.</p></div>
       <div><a href="https://github.com/sacramento-unb">GitHub</a> <a href="/pt-br/" lang="pt-BR">Português</a></div>
     </footer>
     <script is:inline>
