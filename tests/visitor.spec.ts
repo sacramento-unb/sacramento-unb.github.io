@@ -6,7 +6,7 @@ test("A: positioning leads to the project selection", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("applied intelligence");
   await page.getByRole("link", { name: "Explore projects", exact: true }).click();
   await expect(page).toHaveURL(/\/projects\/$/);
-  await expect(page.locator(".project-card")).toHaveCount(4);
+  await expect(page.locator(".project-card")).toHaveCount(5);
   await expect(page.locator('.site-header a[aria-current="page"]')).toHaveText("Projects");
 });
 
@@ -62,7 +62,7 @@ test("E: skip link, navigation, theme and filters work with keyboard", async ({ 
 test("combined filters, no results and reset affect visible cards", async ({ page }) => {
   await page.goto("/projects/");
   await page.getByLabel("Technology", { exact: true }).selectOption("Python");
-  await expect(page.locator(".project-card:visible")).toHaveCount(2);
+  await expect(page.locator(".project-card:visible")).toHaveCount(3);
   await page.getByLabel("Domain", { exact: true }).selectOption("ai");
   await expect(page.locator(".project-card:visible")).toHaveCount(1);
   await page.getByLabel("Technology", { exact: true }).selectOption("Rust");
@@ -70,7 +70,7 @@ test("combined filters, no results and reset affect visible cards", async ({ pag
   await expect(page.locator("#no-projects")).toBeVisible();
   await page.getByLabel("Domain", { exact: true }).selectOption("all");
   await page.getByLabel("Technology", { exact: true }).selectOption("all");
-  await expect(page.locator(".project-card:visible")).toHaveCount(4);
+  await expect(page.locator(".project-card:visible")).toHaveCount(5);
 });
 
 test("theme persists, and storage restrictions do not break interaction", async ({ page }) => {
@@ -95,7 +95,7 @@ test("without JavaScript the whole catalogue and navigation remain available", a
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4322/projects/");
-  await expect(page.locator(".project-card:visible")).toHaveCount(4);
+  await expect(page.locator(".project-card:visible")).toHaveCount(5);
   await expect(page.locator("[data-filter-controls]")).toBeHidden();
   await expect(page.locator(".theme-toggle")).toBeHidden();
   await page.locator(".site-header").getByRole("link", { name: "Contact", exact: true }).click();
@@ -107,7 +107,7 @@ test("Portuguese introduction provides real content and honest English destinati
   await page.goto("/pt-br/");
   await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
   await page.getByRole("link", { name: "Conhecer os projetos" }).click();
-  await expect(page.locator("#projetos .work-row")).toHaveCount(4);
+  await expect(page.locator("#projetos .work-row")).toHaveCount(5);
   await expect(page.locator("#projetos")).toContainText("estudos de caso completos estão em inglês");
 });
 

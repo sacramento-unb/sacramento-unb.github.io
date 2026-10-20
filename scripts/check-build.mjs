@@ -7,7 +7,7 @@ async function files(path) {
   return (await Promise.all((await readdir(path, { withFileTypes: true })).map(entry => entry.isDirectory() ? files(resolve(path, entry.name)) : resolve(path, entry.name)))).flat();
 }
 const htmlFiles = (await files(root)).filter(path => path.endsWith(".html"));
-assert.equal(htmlFiles.length, 12, "Expected twelve static pages");
+assert.equal(htmlFiles.length, 13, "Expected thirteen static pages");
 const titles = new Set();
 let references = 0;
 for (const path of htmlFiles) {
@@ -35,6 +35,6 @@ for (const path of htmlFiles) {
 }
 const sitemap = await readFile(resolve(root, "sitemap-0.xml"), "utf8");
 assert.ok(!sitemap.includes("404.html"), "404 must not be in sitemap");
-assert.equal([...sitemap.matchAll(/<loc>/g)].length, 11);
+assert.equal([...sitemap.matchAll(/<loc>/g)].length, 12);
 assert.match(await readFile(resolve(root, "robots.txt"), "utf8"), /Sitemap: https:\/\/sacramento-unb.github.io\/sitemap-index.xml/);
 console.log(`${htmlFiles.length} pages: unique SEO metadata, structured local links/assets/anchors (${references} references), sitemap and public-bundle checks passed.`);

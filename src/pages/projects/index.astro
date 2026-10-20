@@ -1,19 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { projects } from "../../data/projects";
+import { projects, type ProjectDomain } from "../../data/projects";
 const domains = [...new Set(projects.map(project => project.domain))];
 const technologies = [...new Set(projects.flatMap(project => project.technologies))].sort();
+const domainLabels: Record<ProjectDomain, string> = { ai: "Applied AI", data: "Data systems", geospatial: "Geospatial intelligence", software: "Software engineering" };
 ---
-<BaseLayout title="Projects — Vitor Sacramento" description="Four public experiments in computer vision, media workflows, Linux audio and browser privacy, with architecture, tested behavior and known limitations.">
+<BaseLayout title="Projects — Vitor Sacramento" description="Five public experiments in geospatial pipelines, computer vision, media workflows, Linux audio and browser privacy, with architecture, tested behavior and known limitations.">
   <div class="shell project-index">
-    <header class="page-head"><p class="eyebrow">Selected work / {projects.length.toString().padStart(2, "0")} case studies</p><h1>From a question to a working system.</h1><p class="lead">Personal experiments in vision, media, audio and browser privacy. Explore the problem, architecture and verified checks behind each one.</p></header>
+    <header class="page-head"><p class="eyebrow">Selected work / {projects.length.toString().padStart(2, "0")} case studies</p><h1>From a question to a working system.</h1><p class="lead">Personal experiments in geospatial pipelines, vision, media, audio and browser privacy. Explore the problem, architecture and verified checks behind each one.</p></header>
     <div class="filters" data-filter-controls hidden>
-      <div class="filter-field"><label for="domain-filter">Domain</label><select id="domain-filter"><option value="all">All domains</option>{domains.map(domain => <option value={domain}>{domain === "ai" ? "Applied AI" : "Software engineering"}</option>)}</select></div>
+      <div class="filter-field"><label for="domain-filter">Domain</label><select id="domain-filter"><option value="all">All domains</option>{domains.map(domain => <option value={domain}>{domainLabels[domain]}</option>)}</select></div>
       <div class="filter-field"><label for="technology-filter">Technology</label><select id="technology-filter"><option value="all">All technologies</option>{technologies.map(technology => <option value={technology}>{technology}</option>)}</select></div>
     </div>
     <p class="filter-status" id="filter-status" role="status" aria-live="polite">{projects.length} projects</p>
     <div class="grid project-grid" id="project-grid">{projects.map((project, index) => <article class="card project-card" data-domain={project.domain} data-technologies={JSON.stringify(project.technologies)}>
-      <div class="project-card__header"><span class="index">0{index + 1}</span><span class="project-card__domain">{project.domain === "ai" ? "Applied AI" : "Software"} / {project.status}</span></div>
+      <div class="project-card__header"><span class="index">0{index + 1}</span><span class="project-card__domain">{domainLabels[project.domain]} / {project.status}</span></div>
       <h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2><p>{project.summary}</p>
       <ul class="tags" aria-label={`${project.title} technologies`}>{project.technologies.map(technology => <li>{technology}</li>)}</ul>
       <p class="project-card__link"><a class="text-link" href={`/projects/${project.slug}/`}>Read {project.title} case study <span aria-hidden="true">→</span></a></p>

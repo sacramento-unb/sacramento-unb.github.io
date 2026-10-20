@@ -2,7 +2,7 @@
 
 Static professional portfolio in English, with a Portuguese introduction. The
 identity follows the supplied “Coordenadas de síntese” brand system. Four approved
-public projects have case studies with architecture, evidence and limitations.
+Five approved public projects have case studies with architecture, evidence and limitations.
 
 ## Stack and setup
 

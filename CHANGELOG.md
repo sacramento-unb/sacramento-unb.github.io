@@ -14,6 +14,7 @@
 
 ### Added
 
+- DEM Drainage case study with explicit geospatial pipeline boundaries and runtime limitations.
 - Local, licensed Noto fonts; responsive Astro WebP imagery with dimensions,
   meaningful alternative text and a branded PNG social preview.
 - Domain/technology filters with live result count and useful no-match state.

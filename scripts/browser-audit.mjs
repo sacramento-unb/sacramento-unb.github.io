@@ -8,7 +8,7 @@ const base = process.env.AUDIT_URL || "http://127.0.0.1:4322";
 const dir = `audit-artifacts/${phase}`;
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || "/usr/lib/chromium/chromium", args: ["--no-sandbox"] });
-const routes = ["/", "/about/", "/expertise/", "/contact/", "/projects/", "/projects/obs-eye-contact/", "/projects/editor-inteligente-video/", "/projects/yeti-voice/", "/projects/cor-contritum/", "/writing/", "/pt-br/", "/404.html"];
+const routes = ["/", "/about/", "/expertise/", "/contact/", "/projects/", "/projects/obs-eye-contact/", "/projects/editor-inteligente-video/", "/projects/yeti-voice/", "/projects/cor-contritum/", "/projects/dem-drainage/", "/writing/", "/pt-br/", "/404.html"];
 const widths = [320, 375, 390, 768, 860, 1024, 1440, 1920];
 const result = { phase, commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), date: new Date().toISOString(), routes: [], matrix: [], errors: [], brokenLinks: [], externalRequests: [] };
 const context = await browser.newContext();
