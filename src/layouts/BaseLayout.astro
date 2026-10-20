@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+
+type Props = {
+  title: string;
+  description: string;
+  lang?: "en" | "pt-BR";
+};
+
+const { title, description, lang = "en" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#071b2d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <title>{title}</title>
+    <script is:inline>
+      const saved = localStorage.getItem("theme");
+      const preferred = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      document.documentElement.dataset.theme = saved || preferred;
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Vitor Sacramento home">VS<span>.</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="/projects/">Projects</a>
+        <a href="/expertise/">Expertise</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+    </header>
+    <main id="main"><slot /></main>
+    <footer>
+      <p>Designed around evidence, clarity and responsible disclosure.</p>
+      <div><a href="https://github.com/sacramento-unb">GitHub</a> <a href="/pt-br/" lang="pt-BR">Português</a></div>
+    </footer>
+    <script is:inline>
+      document.querySelector(".theme-toggle")?.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("theme", next);
+      });
+    </script>
+  </body>
+</html>
