@@ -10,13 +10,14 @@ test("A: positioning leads to the project selection", async ({ page }) => {
   await expect(page.locator('.site-header a[aria-current="page"]')).toHaveText("Projects");
 });
 
-test("B: recruiter finds verified education and the CV availability boundary", async ({ page }) => {
+test("B: recruiter finds the professional profile and verified education", async ({ page }) => {
   await page.goto("/about/");
-  await page.getByRole("link", { name: "Professional overview" }).click();
+  await page.getByRole("link", { name: "Professional profile" }).click();
   await expect(page.locator("#profile")).toContainText("Universidade de Brasília");
-  await expect(page.getByRole("heading", { name: "Experience and approach" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Professional contact and CV" })).toBeVisible();
-  await expect(page.locator(".prose")).toContainText("downloadable CV, employment timeline and enrollment dates are not published");
+  await expect(page.getByRole("heading", { name: "Experience", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Teaching and education" })).toBeVisible();
+  await expect(page.locator(".experience-list")).toContainText("Dossel Ambiental");
+  await expect(page.locator(".prose")).toContainText("GitHub and LinkedIn");
 });
 
 test("C: technical visitor opens an architecture and its evidence", async ({ page }) => {

@@ -71,8 +71,42 @@
     "No field INP or other real-user data. TBT is a separate lab metric, not INP.",
     "Axe incomplete contrast items were non-text decorative symbols; checked against the explicit surface colors and meaningful labels.",
     "No physical screen reader or Firefox/Safari run.",
-    "CV file, dated employment/education chronology and publication evidence were not supplied."
+    "A downloadable CV file and publication evidence were not supplied; the employment, education and teaching chronology in the owner's profile attachment was incorporated as public copy."
   ],
+  "follow_up_allowlist_addition": {
+    "date": "2026-10-20",
+    "commit": "28e5376",
+    "added_project": "dem-drainage",
+    "static_pages": 13,
+    "routes_and_themes": 26,
+    "viewport_checks": 208,
+    "screenshots_per_phase": 52,
+    "overflow_cases": 0,
+    "broken_images": 0,
+    "axe_violations": 0,
+    "runtime_errors": 0,
+    "broken_internal_links": 0,
+    "third_party_runtime_requests": 0,
+    "e2e_tests_passed": 13,
+    "static_local_references_checked": 273,
+    "lighthouse": "not rerun; no asset or layout token changes outside the new case study"
+  },
+  "follow_up_profile_revision": {
+    "date": "2026-10-20",
+    "scope": "prominent portrait, CV-based profile, LinkedIn metadata and contact link",
+    "static_pages": 13,
+    "routes_and_themes": 26,
+    "viewport_checks": 208,
+    "overflow_cases": 0,
+    "broken_images": 0,
+    "axe_violations": 0,
+    "runtime_errors": 0,
+    "broken_internal_links": 0,
+    "third_party_runtime_requests": 0,
+    "e2e_tests_passed": 13,
+    "static_local_references_checked": 274,
+    "lighthouse": "not rerun; browser audit and functional tests passed"
+  },
   "raw_evidence": [
     "audit-artifacts/baseline/results.json",
     "audit-artifacts/baseline/lighthouse-mobile.json",

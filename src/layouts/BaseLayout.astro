@@ -22,7 +22,7 @@ const navigation = [
   { href: "/contact/", label: portuguese ? "Contato" : "Contact" },
 ];
 const shareImage = new URL("/brand/social-card.png", Astro.site);
-const structuredData = { "@context": "https://schema.org", "@type": "Person", name: "Vitor Sacramento", url: Astro.site?.href, sameAs: ["https://github.com/sacramento-unb"], description: "Geoscience, geospatial intelligence, data engineering and applied AI." };
+const structuredData = { "@context": "https://schema.org", "@type": "Person", name: "Vitor Sacramento", url: Astro.site?.href, jobTitle: "Geologist, data scientist and data engineer", sameAs: ["https://github.com/sacramento-unb", "https://www.linkedin.com/in/vitor-sacramento-50a337134/"], address: { "@type": "PostalAddress", addressLocality: "Brasília", addressRegion: "DF", addressCountry: "BR" }, knowsLanguage: ["pt-BR", "en"], description: "Geoscience, geospatial intelligence, data engineering and applied AI." };
 ---
 
 <!doctype html>
